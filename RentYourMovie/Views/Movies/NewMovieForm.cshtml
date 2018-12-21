@@ -1,0 +1,49 @@
+﻿@model RentYourMovie.ViewModel.MovieFormViewModel
+@{
+    ViewBag.Title = "New Movie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Movies == null)
+{
+    <h2>Add new Movie</h2>
+}
+else
+{
+    <h2>Edit Movie</h2>
+}
+
+
+
+@using (Html.BeginForm("Create", "Movies"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Movies.Name)
+        @Html.TextBoxFor(model => model.Movies.Name, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Movies.ReleaseDate)
+        @Html.TextBoxFor(model => model.Movies.ReleaseDate,"{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Movies.GenreId)
+        @Html.DropDownListFor(m => m.Movies.GenreId, new SelectList(Model.Genres,"Id","Name"), "Select Genre", new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Movies.NumberInStock)
+        @Html.TextBoxFor(model => model.Movies.NumberInStock, new { @class = "form-control" })
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Movies.DateAdded)
+        @Html.TextBoxFor(model => model.Movies.DateAdded,"{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+    
+    @Html.HiddenFor(m=>m.Movies.Id)
+    
+    <button type="submit" class="btn btn-primary" >Submit</button>
+}
+

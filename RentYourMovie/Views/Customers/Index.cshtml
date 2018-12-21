@@ -1,0 +1,31 @@
+﻿@model IEnumerable<RentYourMovie.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if(!Model.Any())
+{
+    <p>There are no customer right now.</p>
+}
+else
+{
+    
+    <h3>Customers</h3>
+    <table class="table table-bordered table-hover"  >
+        <tr>
+            <th>Name</th>
+            <th>Discount Rate</th>
+        </tr>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Name, "Edit", "Customers", new { id = item.Id }, null)</td>
+                <td>@item.MembershipType.Name </td>
+            </tr>
+        }
+    </table>
+
+}
+
