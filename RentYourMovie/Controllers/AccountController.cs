@@ -27,7 +27,7 @@ namespace RentYourMovie.Controllers
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
 
-        //
+        //testing git comments
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
