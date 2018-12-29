@@ -11,15 +11,18 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Customers.Name)
         @Html.TextBoxFor(m => m.Customers.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customers.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Customers.BirthDate)
         @Html.TextBoxFor(m => m.Customers.BirthDate,"{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m=> m.Customers.BirthDate)
     </div>
       
      <div class="form-group">
-            @Html.LabelFor(m => m.Customers.MembershipTypeId)
-            @Html.DropDownListFor(m => m.Customers.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+         @Html.LabelFor(m => m.Customers.MembershipTypeId)
+         @Html.DropDownListFor(m => m.Customers.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+         @Html.ValidationMessageFor(m=>m.Customers.MembershipTypeId)   
      </div>
    
      <div class="checkbox">

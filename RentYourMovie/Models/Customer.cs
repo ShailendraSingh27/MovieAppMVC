@@ -9,13 +9,14 @@ namespace RentYourMovie.Models
     public class Customer
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Customer's name is required.")]
         [StringLength(255)]
         public string Name { get; set; }
         
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Date of Birth")]
+        [Minimum18YearsIfMember]
         public DateTime? BirthDate { get; set; }
         public bool IsSubscribeToNewsLetter { get; set; }
 
