@@ -36,14 +36,28 @@ namespace RentYourMovie.Controllers
             var Genre = _context.Genres.ToList();
             var viewModel = new MovieFormViewModel
             {
+                
                 Genres = Genre
             };
             return View(viewModel);
         }
 
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Movie movies)
         {
+            if (!ModelState.IsValid)
+            {
+                var movieViewModel = new MovieFormViewModel
+                {
+                    Movies = movies,
+                    Genres = _context.Genres
+                };
+
+                return View("NewMovieForm", movieViewModel);
+            }
+
+
             if(movies.Id == 0)
                 _context.Movies.Add(movies);
             else

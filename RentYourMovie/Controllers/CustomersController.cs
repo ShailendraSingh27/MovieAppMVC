@@ -44,6 +44,7 @@ namespace RentYourMovie.Controllers
         }
 
         //Customer/NewCustomer
+        
         public ActionResult NewCustomer()
         {
             var MembershipType = _context.MembershipTypes;
@@ -55,6 +56,7 @@ namespace RentYourMovie.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customers)
         {
             if (!ModelState.IsValid) 
