@@ -1,4 +1,6 @@
-﻿using RentYourMovie.Models;
+﻿using AutoMapper;
+using RentYourMovie.DTOs;
+using RentYourMovie.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,42 +21,49 @@ namespace RentYourMovie.Controllers.Api
 
         //GET /api/customers
         //to get all the customers
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
         }
 
         //GET /api/customers/customerID
         //to get single customer based on ID
-        public Customer GetCustomer(int id)
+        public CustomerDto GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return customer;
+            return Mapper.Map<Customer,CustomerDto>(customer);
 
         }
 
         //POST /api/customers
         //to add a new customer to the database
         [HttpPost]
-        public  Customer CreateCustomer(Customer customer)
+        public  CustomerDto CreateCustomer(CustomerDto customerDTO)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            //Map Dto from User to database object
+            var customer = Mapper.Map<CustomerDto, Customer>(customerDTO);
+
+            //save the object 
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            return customer;
+            //Map the Auto generated ID
+            customerDTO.Id = customer.Id;
+
+            return customerDTO;
         }
 
 
         //PUT /api/customers/customerID
         //To Update existing customer
         [HttpPut]
-        public  void UpdateCustomer(Customer customer, int id)
+        public  void UpdateCustomer(CustomerDto customerDTO, int id)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -63,11 +72,8 @@ namespace RentYourMovie.Controllers.Api
             if (customerInDB == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            customerInDB.Name = customer.Name;
-            customerInDB.BirthDate = customer.BirthDate;
-            customerInDB.MembershipTypeId = customer.MembershipTypeId;
-            customerInDB.IsSubscribeToNewsLetter = customer.IsSubscribeToNewsLetter;
-
+            Mapper.Map(customerDTO, customerInDB);
+            
             _context.SaveChanges();
         }
 
