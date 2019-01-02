@@ -144,3 +144,5 @@ D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.WebHost.dll
 D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Net.Http.Formatting.xml
 D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.xml
 D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.WebHost.xml
+D:\GitHub\RentYourMovie\RentYourMovie\bin\AutoMapper.dll
+D:\GitHub\RentYourMovie\RentYourMovie\bin\AutoMapper.xml
