@@ -138,3 +138,9 @@ D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.Migrations.Populat
 D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.csproj.GenerateResource.Cache
 D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.dll
 D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.pdb
+D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Net.Http.Formatting.dll
+D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.dll
+D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.WebHost.dll
+D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Net.Http.Formatting.xml
+D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.xml
+D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.WebHost.xml
