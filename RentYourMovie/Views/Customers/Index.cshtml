@@ -12,10 +12,11 @@ else
 {
     
     <h3>Customers</h3>
-    <table class="table table-bordered table-hover"  >
+    <table id="customer" class="table table-bordered table-hover"  >
         <tr>
             <th>Name</th>
             <th>Discount Rate</th>
+            <th>Delete</th>
         </tr>
 
         @foreach(var item in Model)
@@ -23,9 +24,35 @@ else
             <tr>
                 <td>@Html.ActionLink(item.Name, "Edit", "Customers", new { id = item.Id }, null)</td>
                 <td>@item.MembershipType.Name </td>
+                <td>
+                    <button data-customer-id="@item.Id" class="btn-link js-delete">Delete</button>
+                </td>
             </tr>
         }
     </table>
 
 }
 
+@section scripts
+{
+    <script>
+        $(document).ready(function ()
+        {
+            $("#customer .js-delete").on("click", function ()
+            {
+                var button = $(this);
+                if (confirm("Are you sure?"))
+                {
+                    $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function ()
+                            {
+                                button.parents("tr").remove();
+                            }
+                          });
+                }
+            });
+        });
+    </script>
+}
