@@ -21,30 +21,30 @@ namespace RentYourMovie.Controllers.Api
 
         //GET /api/customers
         //to get all the customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>);
+            return Ok(_context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDto>));
         }
 
         //GET /api/customers/customerID
         //to get single customer based on ID
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
-            return Mapper.Map<Customer,CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer,CustomerDto>(customer));
 
         }
 
         //POST /api/customers
         //to add a new customer to the database
         [HttpPost]
-        public  CustomerDto CreateCustomer(CustomerDto customerDTO)
+        public  IHttpActionResult CreateCustomer(CustomerDto customerDTO)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             //Map Dto from User to database object
             var customer = Mapper.Map<CustomerDto, Customer>(customerDTO);
@@ -56,14 +56,14 @@ namespace RentYourMovie.Controllers.Api
             //Map the Auto generated ID
             customerDTO.Id = customer.Id;
 
-            return customerDTO;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDTO);
         }
 
 
         //PUT /api/customers/customerID
         //To Update existing customer
         [HttpPut]
-        public  void UpdateCustomer(CustomerDto customerDTO, int id)
+        public  IHttpActionResult UpdateCustomer(CustomerDto customerDTO, int id)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -75,12 +75,13 @@ namespace RentYourMovie.Controllers.Api
             Mapper.Map(customerDTO, customerInDB);
             
             _context.SaveChanges();
+            return Ok();
         }
 
 
         //DELETE /api/customer/customerId
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             var customerInDB = _context.Customers.SingleOrDefault(c => c.Id == id);
             if (customerInDB == null)
@@ -88,6 +89,7 @@ namespace RentYourMovie.Controllers.Api
 
             _context.Customers.Remove(customerInDB);
             _context.SaveChanges();
+            return Ok();
         }
 
 
