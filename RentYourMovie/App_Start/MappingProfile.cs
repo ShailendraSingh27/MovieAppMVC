@@ -13,11 +13,11 @@ namespace RentYourMovie.App_Start
         public MappingProfile()
         {
             //Customer Mapping
-            Mapper.CreateMap<Customer, CustomerDto>();
+            Mapper.CreateMap<Customer, CustomerDto>().ForMember(c => c.Id, opt => opt.Ignore());
             Mapper.CreateMap<CustomerDto, Customer>();
 
             //Movie Mapping
-            Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<Movie, MovieDto>().ForMember(m => m.Id, opt => opt.Ignore());
             Mapper.CreateMap<MovieDto, Movie>();
         }
     }
