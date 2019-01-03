@@ -12,8 +12,13 @@ namespace RentYourMovie.App_Start
     {
         public MappingProfile()
         {
+            //Customer Mapping
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<CustomerDto, Customer>();
+
+            //Movie Mapping
+            Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<MovieDto, Movie>();
         }
     }
 }
