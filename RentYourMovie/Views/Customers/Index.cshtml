@@ -41,17 +41,21 @@ else
             $("#customer .js-delete").on("click", function ()
             {
                 var button = $(this);
-                if (confirm("Are you sure?"))
+                bootbox.confirm("Are you sure?", function (result)
                 {
-                    $.ajax({
+                    if(result)
+                    {
+                        $.ajax({
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
-                            success: function ()
-                            {
+                            success: function () {
                                 button.parents("tr").remove();
                             }
-                          });
-                }
+                        });
+                    }
+                });
+
+               
             });
         });
     </script>
