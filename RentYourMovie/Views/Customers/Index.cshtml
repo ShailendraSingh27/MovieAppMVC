@@ -13,22 +13,25 @@ else
     
     <h3>Customers</h3>
     <table id="customer" class="table table-bordered table-hover"  >
-        <tr>
-            <th>Name</th>
-            <th>Discount Rate</th>
-            <th>Delete</th>
-        </tr>
-
-        @foreach(var item in Model)
-        {
+        <thead>
             <tr>
-                <td>@Html.ActionLink(item.Name, "Edit", "Customers", new { id = item.Id }, null)</td>
-                <td>@item.MembershipType.Name </td>
-                <td>
-                    <button data-customer-id="@item.Id" class="btn-link js-delete">Delete</button>
-                </td>
+                <th>Name</th>
+                <th>Discount Rate</th>
+                <th>Delete</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(item.Name, "Edit", "Customers", new { id = item.Id }, null)</td>
+                    <td>@item.MembershipType.Name </td>
+                    <td>
+                        <button data-customer-id="@item.Id" class="btn-link js-delete">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 
 }
@@ -38,7 +41,11 @@ else
     <script>
         $(document).ready(function ()
         {
-            $("#customer .js-delete").on("click", function ()
+            //Calling dataTables
+            $("#customer").DataTable();
+
+            //Handling click event for delet button
+            $("#customer").on("click"," .js-delete", function ()
             {
                 var button = $(this);
                 bootbox.confirm("Are you sure?", function (result)
