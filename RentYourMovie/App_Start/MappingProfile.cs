@@ -25,6 +25,10 @@ namespace RentYourMovie.App_Start
            //MembershipType Mapping
             Mapper.CreateMap<MembershipType, MembershipTypeDto>();
             Mapper.CreateMap<MembershipTypeDto, MembershipType>();
+
+            //Genre Mapping
+            Mapper.CreateMap<Genre, GenreDto>();
+            Mapper.CreateMap<GenreDto, Genre>();
         }
     }
 }

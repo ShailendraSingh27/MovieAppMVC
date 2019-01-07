@@ -11,17 +11,12 @@
         <tr>
             <th>Movies</th>
             <th>Genre</th>
+            <th>Delete</th>
         </tr>
     </thead>
     
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(item.Name, "Edit", "Movies", new { id = item.Id }, null)</td>
-                <td>@item.Genre.Name</td>
-            </tr>
-        }
+      
     </tbody>
 
 </table>
@@ -32,7 +27,54 @@
         $(document).ready(function ()
         {
             //calling DataTable
-            var dataTable = $("#movies").DataTable();
+            var dataTable = $("#movies").DataTable
+            ({
+                ajax:
+                {
+                    url: "/api/movies",
+                    dataSrc:""
+                },
+                columns:
+                [
+                    {
+                        data: "name",
+                        render:function(data,type,movie)
+                        {
+                            return "<a href='/movies/edit/"+movie.id+"'>"+movie.name+"</a>";
+                        }
+                    },
+                    {
+                        data:"genre.name"
+                    },
+                    {
+                        data: "id",
+                        render:function(data)
+                        {
+                            return "<button class='btn-link js-delete' data-movie-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+
+
+            //handling delete button events
+            $("#movies").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure?", function (result) {
+                    if(result)
+                    {
+                        $.ajax({
+                            url: "/api/movies/" + button.attr("data-movie-id"),
+                            method: "DELETE",
+                            success: function () {
+                                dataTable.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
         });
     </script>
 }

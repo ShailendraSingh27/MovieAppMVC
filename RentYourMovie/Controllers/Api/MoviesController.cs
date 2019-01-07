@@ -4,6 +4,7 @@ using RentYourMovie.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Http;
 
@@ -22,7 +23,11 @@ namespace RentYourMovie.Controllers.Api
         //to get all the movies
         public IHttpActionResult GetMovies()
         {
-            return Ok(_context.Movies.ToList().Select(Mapper.Map<Movie,MovieDto>));
+            var movieDto = _context.Movies
+                .Include(c => c.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
+            return Ok(movieDto);
         }
 
 
