@@ -9,6 +9,7 @@ namespace RentYourMovie.Models
     public class Customer
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Customer's name is required.")]
         [StringLength(255)]
         public string Name { get; set; }

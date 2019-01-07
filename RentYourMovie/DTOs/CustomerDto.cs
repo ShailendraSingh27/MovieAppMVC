@@ -15,6 +15,7 @@ namespace RentYourMovie.DTOs
         public string Name { get; set; }
         public bool IsSubscribeToNewsLetter { get; set; }
         public byte MembershipTypeId { get; set; }
+        public MembershipTypeDto MembershipType { get; set; }
         //[Minimum18YearsIfMember]
         public DateTime? BirthDate { get; set; }
         

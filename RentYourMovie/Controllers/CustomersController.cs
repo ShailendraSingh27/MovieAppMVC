@@ -29,8 +29,9 @@ namespace RentYourMovie.Controllers
         //Customer/Index
         public ViewResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            return View(customers);
+            //using API end pints for this
+            //var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            return View();
         }
         // GET: /Customers/Details
         public ActionResult Details(int id)
