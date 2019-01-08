@@ -28,12 +28,12 @@ namespace RentYourMovie.Controllers
             //now using api to return movie list
             //var movie = _context.Movies.Include(m=>m.Genre).ToList();
 
-            if(User.IsInRole("CanManageMovies"))
+            if(User.IsInRole(RoleName.CanManageMovies))
                 return View("MovieList");
             return View("ReadOnlyMovieList");
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult NewMovieForm()
         {
             var Genre = _context.Genres.ToList();
@@ -46,7 +46,7 @@ namespace RentYourMovie.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public ActionResult Create(Movie movies)
         {
             if (!ModelState.IsValid)
@@ -77,7 +77,7 @@ namespace RentYourMovie.Controllers
             return RedirectToAction("Index","Movies");
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);

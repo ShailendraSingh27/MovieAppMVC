@@ -47,6 +47,7 @@ namespace RentYourMovie.Controllers.Api
         //POST /api/movies
         //to add a new movie
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateMovie(MovieDto movieDto)
         {
             if (!ModelState.IsValid)
@@ -66,6 +67,7 @@ namespace RentYourMovie.Controllers.Api
 
         //PUT /api/movies/movieID
         //to update detail of a movie
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpPut]
         public  IHttpActionResult UpdateMovie(MovieDto movieDto)
         {
@@ -84,6 +86,7 @@ namespace RentYourMovie.Controllers.Api
 
         //DELETE /api/movies/movieID
         //to Delete perticular movie
+        [Authorize(Roles = RoleName.CanManageMovies)]
         [HttpDelete]
         public IHttpActionResult DeleteMovie(int id)
         {
