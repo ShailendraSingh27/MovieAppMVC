@@ -26,6 +26,7 @@ namespace RentYourMovie.Controllers.Api
             var movies = _context.Movies.Where(
                 m => rentalDto.MovieIds.Contains(m.Id)).ToList();
 
+
             foreach(var movie in movies)
             {
                 if (movie.NumberAvailable == 0)
