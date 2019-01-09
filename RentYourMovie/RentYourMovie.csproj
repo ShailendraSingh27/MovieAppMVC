@@ -183,6 +183,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="DTOs\CustomerDto.cs" />
     <Compile Include="DTOs\GenreDto.cs" />
     <Compile Include="DTOs\MembershipTypeDto.cs" />
@@ -504,6 +505,7 @@
     <Content Include="Views\Customers\NewCustomer.cshtml" />
     <Content Include="Views\Movies\NewMovieForm.cshtml" />
     <Content Include="Views\Movies\ReadOnlyMovieList.cshtml" />
+    <Content Include="Views\Rentals\NewRental.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
