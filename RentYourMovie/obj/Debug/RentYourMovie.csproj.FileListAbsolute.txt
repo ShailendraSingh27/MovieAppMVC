@@ -147,3 +147,5 @@ D:\GitHub\RentYourMovie\RentYourMovie\bin\System.Web.Http.WebHost.xml
 D:\GitHub\RentYourMovie\RentYourMovie\bin\AutoMapper.dll
 D:\GitHub\RentYourMovie\RentYourMovie\bin\AutoMapper.xml
 D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.Migrations.SeedUsers.resources
+D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.Migrations.RentalClass.resources
+D:\GitHub\RentYourMovie\RentYourMovie\obj\Debug\RentYourMovie.Migrations.NumberAvailableInMovies.resources

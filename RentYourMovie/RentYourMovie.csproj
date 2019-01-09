@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -178,6 +179,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\NewRentalController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="DTOs\GenreDto.cs" />
     <Compile Include="DTOs\MembershipTypeDto.cs" />
     <Compile Include="DTOs\MovieDto.cs" />
+    <Compile Include="DTOs\RentalDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -248,6 +251,14 @@
     <Compile Include="Migrations\201901081309534_SeedUsers.Designer.cs">
       <DependentUpon>201901081309534_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901090654163_RentalClass.cs" />
+    <Compile Include="Migrations\201901090654163_RentalClass.Designer.cs">
+      <DependentUpon>201901090654163_RentalClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901090720509_NumberAvailableInMovies.cs" />
+    <Compile Include="Migrations\201901090720509_NumberAvailableInMovies.Designer.cs">
+      <DependentUpon>201901090720509_NumberAvailableInMovies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -256,6 +267,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Minimum18YearsIfMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -549,6 +561,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901081309534_SeedUsers.resx">
       <DependentUpon>201901081309534_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901090654163_RentalClass.resx">
+      <DependentUpon>201901090654163_RentalClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901090720509_NumberAvailableInMovies.resx">
+      <DependentUpon>201901090720509_NumberAvailableInMovies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
