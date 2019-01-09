@@ -24,7 +24,7 @@ namespace RentYourMovie.Controllers.Api
                 c => c.Id == rentalDto.CustomerId);
 
             var movies = _context.Movies.Where(
-                m => rentalDto.MovieIds.Contains(m.Id));
+                m => rentalDto.MovieIds.Contains(m.Id)).ToList();
 
             foreach(var movie in movies)
             {
