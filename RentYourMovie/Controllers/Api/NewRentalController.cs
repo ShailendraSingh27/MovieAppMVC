@@ -28,6 +28,8 @@ namespace RentYourMovie.Controllers.Api
 
             foreach(var movie in movies)
             {
+                //Decreasing numberAvailable
+                movie.NumberAvailable--;
                 var rental = new Rental
                 {
                     Customer = customer,
