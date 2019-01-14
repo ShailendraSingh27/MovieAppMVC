@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentYourMovie.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,7 @@ namespace RentYourMovie.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.currentUser = RoleName.CanManageMovies;
             return View();
         }
 

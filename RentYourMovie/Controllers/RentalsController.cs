@@ -12,7 +12,7 @@ namespace RentYourMovie.Controllers
         // GET: /Rentals/
         public ActionResult NewRental()
         {
-            return View();
+            return View("NewRental");
         }
 	}
 }

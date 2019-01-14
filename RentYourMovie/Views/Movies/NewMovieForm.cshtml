@@ -48,7 +48,7 @@ else
         @Html.ValidationMessageFor(model => model.Movies.DateAdded)
     </div>
     
-    @Html.Hidden("Movie.Id",(Model.Movies !=null ) ? Model.Movies.Id : 0)
+    @Html.HiddenFor(m => m.Movies.Id);
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary" >Submit</button>
 }

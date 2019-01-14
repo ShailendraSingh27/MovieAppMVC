@@ -54,13 +54,13 @@ namespace RentYourMovie.Controllers
                 var movieViewModel = new MovieFormViewModel
                 {
                     Movies = movies,
-                    Genres = _context.Genres
+                    Genres = _context.Genres.ToList()
                 };
 
                 return View("NewMovieForm", movieViewModel);
             }
 
-
+            movies.NumberAvailable = movies.NumberInStock;
             if(movies.Id == 0)
                 _context.Movies.Add(movies);
             else
@@ -72,6 +72,7 @@ namespace RentYourMovie.Controllers
                 movieInDb.GenreId = movies.GenreId;
                 movieInDb.DateAdded = movies.DateAdded;
                 movieInDb.NumberInStock = movies.NumberInStock;
+                
             }
             _context.SaveChanges();
             return RedirectToAction("Index","Movies");

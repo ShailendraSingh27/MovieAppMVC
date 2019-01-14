@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿
+using System.Web;
 using System.Web.Optimization;
 
 namespace RentYourMovie
@@ -11,11 +12,12 @@ namespace RentYourMovie
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                          "~/Scripts/bootstrap.js",
-                        "~/Scripts/bootbox.js",
+                         "~/Scripts/bootbox.js",
                          "~/Scripts/respond.js",
                          "~/Scripts/datatables/jquery.datatables.js",
                          "~/Scripts/datatables/datatables.bootstrap.js",
-                         "~/Scripts/typeahead.bundle.js"
+                         "~/Scripts/typeahead.bundle.js",
+                         "~/Scripts/toastr.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -30,7 +32,8 @@ namespace RentYourMovie
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
-                      "~/Content/typeahead.css"
+                      "~/Content/typeahead.css",
+                      "~/Content/toastr.css"
                       ));
         }
     }

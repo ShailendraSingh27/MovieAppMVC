@@ -21,15 +21,32 @@ namespace RentYourMovie.Controllers.Api
 
         //GET /api/movies
         //to get all the movies
-        public IHttpActionResult GetMovies()
+        //public IHttpActionResult GetMovies()
+        //{
+        //    var movieDto = _context.Movies
+        //        .Include(c => c.Genre)
+        //        .ToList()
+        //        .Select(Mapper.Map<Movie, MovieDto>);
+
+        //    return Ok(movieDto);
+        //}
+
+
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var movieDto = _context.Movies
-                .Include(c => c.Genre)
+            var moviesQuery = _context.Movies
+               .Include(m => m.Genre)
+               .Where(m => m.NumberAvailable > 0);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
+            var movieDto = moviesQuery
                 .ToList()
                 .Select(Mapper.Map<Movie, MovieDto>);
+
             return Ok(movieDto);
         }
-
 
         //GET /api/movies/movieID
         //to get movie by its id
@@ -55,7 +72,7 @@ namespace RentYourMovie.Controllers.Api
 
             //Map Dto to Movie
             var movie = Mapper.Map<MovieDto, Movie>(movieDto);
-
+            movie.NumberAvailable = movie.NumberInStock;
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
